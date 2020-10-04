@@ -26,7 +26,7 @@ docker-compose up -d
 ### ASP.NET Core
 バックエンドディレクトリに移動
 ```console
-cd ./aspnet-core-3-registration-login-api
+cd ./backend-dotnet-core
 ```
 #### 本番環境/開発環境で DB を切り替える
 開発環境では SQLite の DB を自動生成（SQL の環境構築不要）
@@ -92,7 +92,7 @@ http://localhost:4000/index.html
 ### Vue.js
 フロントエンドディレクトリに移動
 ```console
-cd ./vue-vuex-jwt-auth
+cd ./frontend-vue-vuex
 ```
 
 モジュールをインストール

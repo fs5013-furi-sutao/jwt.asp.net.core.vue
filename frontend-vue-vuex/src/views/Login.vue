@@ -69,6 +69,13 @@ export default {
     }
   },
   created() {
+    console.log('created()');
+    console.log('this.$store.state.auth.user=');
+    console.log(this.$store.state.auth.user);
+    console.log('this.$store.state.auth.status.loggedIn=');
+    console.log(this.$store.state.auth.status.loggedIn);
+console.log('this.$store.state=');
+    console.log(this.$store.state)
     if (this.loggedIn) {
       this.$router.push('/profile');
     }

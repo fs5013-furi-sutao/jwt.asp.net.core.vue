@@ -10,7 +10,7 @@ using WebApi.Helpers;
 namespace WebApi.Migrations.SqlServerMigrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20201003134026_InitialCreate")]
+    [Migration("20201003220202_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

@@ -66,37 +66,36 @@ export default {
   methods: {
     logOut() {
       this.$store.dispatch('auth/logout');
+      console.log('this.$store.state.auth.user=');
+      console.log(this.$store.state.auth.user);
+      console.log(this.$store.state);
       this.$router.push('/login');
     },
-    createPageTitle: function (to) {
+    createPageTitle: function (routeInstance) {
       // タイトルを設定
-      if (to.meta.title) {
-        const setTitle = `${to.meta.title} | ${this.siteTitle}`;
+      if (routeInstance.meta.title) {
+        const setTitle = `${routeInstance.meta.title} | ${this.siteTitle}`;
         document.title = setTitle;
       } else {
         document.title = this.siteTitle;
       }
 
       // メタタグdescription設定
-      if (to.meta.desc) {
-        var setDesc = to.meta.desc + ' | SourceAcademy';
-        document
-          .querySelector("meta[name='description']")
-          .setAttribute('content', setDesc);
-      } else {
-        document
-          .querySelector("meta[name='description']")
-          .setAttribute('content', 'SourceAcademy');
-      }
+      const setDesc = routeInstance.meta.desc
+        ? routeInstance.meta.desc
+        : '';
+
+      const elem = document.querySelector("meta[name='description']");
+      elem.setAttribute('content', setDesc);
     },
   },
   mounted: function () {
-    var to = this.$route;
-    this.createPageTitle(to);
+    var routeInstance = this.$route;
+    this.createPageTitle(routeInstance);
   },
   watch: {
-    $route(to, from) {
-      this.createPageTitle(to);
+    $route(routeInstance, from) {
+      this.createPageTitle(routeInstance);
     },
   },
 };
