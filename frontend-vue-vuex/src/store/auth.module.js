@@ -50,9 +50,6 @@ export const auth = {
     logout(state) {
       state.status.loggedIn = false;
       state.user = null;
-      console.log('dispatch.logout=')
-      console.log(state.auth)
-      console.log(state)
     },
     registerSuccess(state) {
       state.status.loggedIn = false;

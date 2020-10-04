@@ -66,9 +66,6 @@ export default {
   methods: {
     logOut() {
       this.$store.dispatch('auth/logout');
-      console.log('this.$store.state.auth.user=');
-      console.log(this.$store.state.auth.user);
-      console.log(this.$store.state);
       this.$router.push('/login');
     },
     createPageTitle: function (routeInstance) {

@@ -30,10 +30,6 @@ export default {
     },
   },
   mounted() {
-    console.log('this.$store.state.auth.user=');
-    console.log(this.$store.state.auth.user);
-console.log('this.$store.state=');
-    console.log(this.$store.state)
     if (!this.currentUser) {
       this.$router.push('/login');
     }
