@@ -12,13 +12,13 @@
             <label for="username">ユーザ名</label>
             <input
               v-model="user.username"
-              v-validate="'alpha_num|required|min:3|max:20'"
+              v-validate="'required|alpha_num|min:3|max:20'"
               type="text"
               class="form-control"
               name="username"
             />
             <div
-              v-if="submitted && errors.has('username')"
+              v-if="errors.has('username')"
               class="alert-danger"
             >{{errors.first('username')}}</div>
           </div>
@@ -32,7 +32,7 @@
               name="email"
             />
             <div
-              v-if="submitted && errors.has('email')"
+              v-if="errors.has('email')"
               class="alert-danger"
             >{{errors.first('email')}}</div>
           </div>
@@ -46,7 +46,7 @@
               name="password"
             />
             <div
-              v-if="submitted && errors.has('password')"
+              v-if="errors.has('password')"
               class="alert-danger"
             >{{errors.first('password')}}</div>
           </div>

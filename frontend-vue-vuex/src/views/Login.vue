@@ -11,16 +11,14 @@
           <label for="username">ユーザ名</label>
           <input
             v-model="user.username"
-            v-validate="'required'"
+            v-validate="'alpha_num|required'"
             type="text"
             class="form-control"
             name="username"
           />
-          <div
-            v-if="errors.has('username')"
-            class="alert alert-danger"
-            role="alert"
-          >Username is required!</div>
+          <div v-if="errors.has('username')" class="alert-danger">
+            {{ errors.first('username') }}
+          </div>
         </div>
         <div class="form-group">
           <label for="password">パスワード</label>
@@ -31,20 +29,23 @@
             class="form-control"
             name="password"
           />
-          <div
-            v-if="errors.has('password')"
-            class="alert alert-danger"
-            role="alert"
-          >Password is required!</div>
+          <div v-if="errors.has('password')" class="alert-danger">
+            {{ errors.first('password') }}
+          </div>
         </div>
         <div class="form-group">
           <button class="btn btn-primary btn-block" :disabled="loading">
-            <span v-show="loading" class="spinner-border spinner-border-sm"></span>
+            <span
+              v-show="loading"
+              class="spinner-border spinner-border-sm"
+            ></span>
             <span>ログイン</span>
           </button>
         </div>
         <div class="form-group">
-          <div v-if="message" class="alert alert-danger" role="alert">{{message}}</div>
+          <div v-if="message" class="alert alert-danger" role="alert">
+            {{ message }}
+          </div>
         </div>
       </form>
     </div>
@@ -60,13 +61,13 @@ export default {
     return {
       user: new User('', ''),
       loading: false,
-      message: ''
+      message: '',
     };
   },
   computed: {
     loggedIn() {
       return this.$store.state.auth.status.loggedIn;
-    }
+    },
   },
   created() {
     if (this.loggedIn) {
@@ -76,7 +77,7 @@ export default {
   methods: {
     handleLogin() {
       this.loading = true;
-      this.$validator.validateAll().then(isValid => {
+      this.$validator.validateAll().then((isValid) => {
         if (!isValid) {
           this.loading = false;
           return;
@@ -87,18 +88,20 @@ export default {
             () => {
               this.$router.push('/profile');
             },
-            error => {
+            (error) => {
               this.loading = false;
               this.message =
-                (error.response && error.response.data && error.response.data.message) ||
+                (error.response &&
+                  error.response.data &&
+                  error.response.data.message) ||
                 error.message ||
                 error.toString();
             }
           );
         }
       });
-    }
-  }
+    },
+  },
 };
 </script>
 

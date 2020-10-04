@@ -50,7 +50,7 @@ namespace WebApi.Controllers
         /// <param name="model"></param>
         /// <returns>ユーザ情報とトークン</returns>
         /// <response code="201">ユーザ情報とトークン</response>
-        /// <response code="400">model が null だった場合</response>    
+        /// <response code="400">ユーザー名またはパスワードが正しくありません</response>    
         [AllowAnonymous]
         [HttpPost("login")]
         public IActionResult Authenticate([FromBody] AuthenticateModel model)
@@ -58,7 +58,7 @@ namespace WebApi.Controllers
             var user = _userService.Authenticate(model.Username, model.Password);
 
             if (user == null)
-                return BadRequest(new { message = "Username or password is incorrect" });
+                return BadRequest(new { message = "ユーザー名またはパスワードが正しくありません" });
 
             var tokenHandler = new JwtSecurityTokenHandler();
             var key = Encoding.ASCII.GetBytes(_appSettings.Secret);
